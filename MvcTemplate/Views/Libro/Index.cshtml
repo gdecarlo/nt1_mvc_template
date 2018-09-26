@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MvcTemplate.Models.Libro>
+
+    @section scripts{
+<script src="~/Scripts/libro.js"></script>
+        <script>
+            $(document).ready(function() {
+                var libros = @Html.Raw(Json.Encode(Model));
+                var tabla = $("#tabla");
+                libros.forEach(function(libro) {
+                    console.log(libro);
+                    let tr = $("<tr></tr>");
+                    let tds = `<td>${libro.Nombre}</td><td>${libro.Rating}</td>`;
+                    tr.append(tds);
+                    tr.append(getLinks(libro.Id));
+                    tabla.append(tr);
+
+                });
+            });
+        </script>
+    }
+
+<h2>
+    <a href="Create">Nuevo libro</a>
+</h2>
+<table class="table" id="tabla">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Rating
+        </th>
+        <th></th>
+    </tr>
+</table>
+

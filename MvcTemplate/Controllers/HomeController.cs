@@ -26,5 +26,11 @@ namespace MvcTemplate.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public JsonResult Test(string nombre)
+        {
+            return Json(nombre);
+        }
     }
 }
