@@ -1,45 +1,42 @@
 ﻿@model IEnumerable<MvcTemplate.Models.Pelicula>
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+    <h2>
+        @* Esta es una manera de crear un link hacia un recurso. Pueden ver como termina siendo el codigo de este elemento, inspeccionando la consola. *@
+        @Html.ActionLink("Nueva pelicula", "Create")
+    </h2>
     <table class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
             <th>
+                @* Este tag nos permite obtener el nombre del atributo. Quizas parezca que no tiene sentido pero nosotros podemos 
+                   darle un nombre de visualizacion a nuestros atributos. Para ver elejemplo vayan a la clase Pelicula. *@
                 @Html.DisplayNameFor(model => model.Rating)
             </th>
             <th></th>
         </tr>
     
-    @foreach (var item in Model) {
+        @* De esta forma iteramos sobre la informacion que recibimos en la vista, la cual esta en la variable Model *@
+    @foreach (var pelicula in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
+                @* COn este tag imprimimos el valor de atributo. *@
+                @Html.DisplayFor(modelItem => pelicula.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Rating)
+                @Html.DisplayFor(modelItem => pelicula.Rating)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                @* Como ya vimos mas arriba, generamos links a otros recursos pero esta vez usando el valor de un atributo *@
+                @Html.ActionLink("Edit", "Edit", new { id= pelicula.Id }) |
+                @Html.ActionLink("Details", "Details", new { id= pelicula.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id= pelicula.Id })
             </td>
         </tr>
     }
     
     </table>
-</body>
-</html>
 
 

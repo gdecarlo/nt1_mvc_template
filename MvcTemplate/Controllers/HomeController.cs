@@ -27,10 +27,16 @@ namespace MvcTemplate.Controllers
             return View();
         }
 
-        [HttpPost]
-        public JsonResult Test(string nombre)
+        public ActionResult Saludar()
         {
-            return Json(nombre);
+
+            return View("NoSoySaludar"); //Cambiamos la convension de ASP.NET MVC
         }
+
+        public ActionResult MuyLejos()
+        {
+            return View("~/Views/Ejemplo/Index.cshtml"); //Cambiamos aun mas y accedemos a otra carpeta de vistas.
+        }
+
     }
 }

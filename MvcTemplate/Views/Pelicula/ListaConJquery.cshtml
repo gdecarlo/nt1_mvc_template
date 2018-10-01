@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MvcTemplate.Models.Pelicula>
+
+@section scripts{
+    <script src="~/Scripts/pelicula.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            //Hacemos referencia al modelo tipado que nos envió el controller. Lo convertimos a un objeto javascript.
+            var peliculas = @Html.Raw(Json.Encode(Model));
+
+            //Referenciamos la tabla en la cual queremos agregar filas de forma dinamica.
+            var tabla = $("#tabla");
+
+            //Recorremos nuestro nuevo objeto que contiene la lista de peliculas.
+            peliculas.forEach(function (pelicula) {
+
+                //Creamos un tr dinamico con jquery
+                let tr = $("<tr></tr>");
+
+                //Creamos los tds con la informacion de la pelicula que estamos iterando.
+                let tds = `<td>${pelicula.Nombre}</td><td>${pelicula.Rating}</td>`;
+
+                //Luego a nuestro tr le agregamos los tds dinamicamente.
+                tr.append(tds);
+
+                //Tambien agregamos para cada fila la parte de los links que nos llevan a otras acciones.
+                //Acá hacemos uso del archivo .js incluido en la vista.
+                tr.append(getLinks(pelicula.Id));
+
+                //Para terminar insertamos el tr con todo su contenido dentro de la tabla.
+                tabla.append(tr);
+
+
+                });
+            });
+    </script>
+}
+
+<h2>
+    <a href="Create">Nueva pelicula</a>
+</h2>
+<table class="table" id="tabla">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Rating
+        </th>
+        <th></th>
+    </tr>
+</table>
+

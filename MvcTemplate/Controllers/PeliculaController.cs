@@ -12,19 +12,16 @@ namespace MvcTemplate.Controllers
         // GET: Pelicula
         public ActionResult Index()
         {
-            List<Pelicula> peliculas = new List<Pelicula>();
-            for (int i = 0; i < 5; i++)
-            {
-                int id = i + 1;
-                peliculas.Add(new Pelicula(id, "Pelicula " + id, "8.5"));
-            }
+            List<Pelicula> peliculas = GetPeliculas();
+           
             return View(peliculas);
         }
 
-        // GET: Pelicula/Details/5
-        public ActionResult Details(int id)
+        public ActionResult ListaConJquery()
         {
-            return View();
+            List<Pelicula> peliculas = GetPeliculas();
+
+            return View(peliculas);
         }
 
         // GET: Pelicula/Create
@@ -91,6 +88,18 @@ namespace MvcTemplate.Controllers
             {
                 return View();
             }
+        }
+
+        private List<Pelicula> GetPeliculas()
+        {
+            List<Pelicula> peliculas = new List<Pelicula>();
+            for (int i = 0; i < 5; i++)
+            {
+                int id = i + 1;
+                peliculas.Add(new Pelicula(id, "Pelicula " + id, "8.5"));
+            }
+
+            return peliculas;
         }
     }
 }
